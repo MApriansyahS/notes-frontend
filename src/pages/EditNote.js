@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
+const API_URL = "https://notes-backend-46986360068.us-central1.run.app"; // Ganti dengan URL backend dari Cloud Run
+
 const EditNote = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -10,7 +12,7 @@ const EditNote = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/notes/${id}`)
+      .get(`${API_URL}/notes/${id}`)
       .then((response) => {
         setTitle(response.data.title);
         setContent(response.data.content);
@@ -21,7 +23,7 @@ const EditNote = () => {
   const updateNote = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/notes/${id}`, { title, content });
+      await axios.put(`${API_URL}/notes/${id}`, { title, content });
       navigate("/");
     } catch (error) {
       console.error("Error updating note:", error);

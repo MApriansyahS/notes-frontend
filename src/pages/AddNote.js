@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const API_URL = "https://notes-backend-46986360068.us-central1.run.app"; // Ganti dengan URL backend dari Cloud Run
+
 const AddNote = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -10,8 +12,8 @@ const AddNote = () => {
   const saveNote = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/notes", { title, content });
-      navigate("/"); // Kembali ke halaman utama setelah menambahkan catatan
+      await axios.post(`${API_URL}/notes`, { title, content });
+      navigate("/");
     } catch (error) {
       console.error("Error saving note:", error);
     }

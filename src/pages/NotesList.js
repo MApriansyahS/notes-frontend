@@ -2,19 +2,21 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+const API_URL = "https://notes-backend-46986360068.us-central1.run.app"; // Ganti dengan URL backend dari Cloud Run
+
 const NotesList = () => {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/notes")
+      .get(`${API_URL}/notes`)
       .then((response) => setNotes(response.data))
       .catch((error) => console.error("Error fetching notes:", error));
   }, []);
 
   const deleteNote = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/notes/${id}`);
+      await axios.delete(`${API_URL}/notes/${id}`);
       setNotes(notes.filter((note) => note.id !== id));
     } catch (error) {
       console.error("Error deleting note:", error);
