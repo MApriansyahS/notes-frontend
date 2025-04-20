@@ -1,10 +1,21 @@
 runtime: nodejs20
 instance_class: F1
 
+
 handlers:
-  - url: /(.*)
+  # Menangani folder static (hasil build React)
+  - url: /static
+    static_dir: build/static
+
+  # Menangani file statis umum seperti .js, .css, .png, .svg, dll
+  - url: /(.*\.(js|css|png|jpg|ico|svg|woff2?))
     static_files: build/\1
-    upload: build/(.*)
+    upload: build/.*\.(js|css|png|jpg|ico|svg|woff2?)
+
+  # Tangani semua route lain (SPA) dengan mengembalikan index.html
+  - url: /.*
+    static_files: build/index.html
+    upload: build/index.html
     secure: always
 
 automatic_scaling:
