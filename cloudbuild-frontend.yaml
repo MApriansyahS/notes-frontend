@@ -1,11 +1,14 @@
 steps:
   - name: 'gcr.io/cloud-builders/npm'
+    dir: '.'
     args: ['install']
 
   - name: 'gcr.io/cloud-builders/npm'
+    dir: '.'
     args: ['run', 'build']
 
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    dir: '.'
     args: ['gcloud', 'app', 'deploy', 'app.yaml', '--quiet']
 
 options:
