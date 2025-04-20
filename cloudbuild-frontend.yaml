@@ -1,0 +1,14 @@
+steps:
+  - name: 'gcr.io/cloud-builders/npm'
+    dir: 'notes-frontend-main'
+    args: ['install']
+
+  - name: 'gcr.io/cloud-builders/npm'
+    dir: 'notes-frontend-main'
+    args: ['run', 'build']
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    dir: 'notes-frontend-main'
+    args: ['gcloud', 'app', 'deploy', 'app.yaml', '--quiet']
+
+images: []
