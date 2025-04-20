@@ -1,0 +1,12 @@
+runtime: nodejs18
+instance_class: F1
+
+handlers:
+  - url: /(.*)
+    static_files: build/\1
+    upload: build/(.*)
+    secure: always
+
+automatic_scaling:
+  min_instances: 1
+  max_instances: 2
