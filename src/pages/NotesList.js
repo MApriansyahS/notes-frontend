@@ -25,7 +25,7 @@ const NotesList = () => {
 
   return (
     <div className="container">
-      <h1>Notes List</h1>
+      <h1>Daftar Note</h1>
       <Link to="/add">
         <button className="btn-add">+ Add Note</button>
       </Link>
